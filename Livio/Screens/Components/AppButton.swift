@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PrimaryButton: View {
 
-    let createAccount: () -> Void
+    
     let title: String
     let isBackgroundColor: Bool
     let isBorder: Bool
@@ -17,13 +17,13 @@ struct PrimaryButton: View {
     
     
     var body: some View {
-        Button(action: createAccount) {
+        
             Text(title)
                 .font(.system(size: 17, weight: .semibold))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
                 .foregroundStyle(titleColor)
-        }
+        
         .padding(.horizontal, 20)
         
         .background{

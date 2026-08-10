@@ -14,43 +14,45 @@ struct WelcomeScreen: View {
     func login() {}
     
     var body: some View {
-        TabView(selection: $currentPage){
-            OnboardingView(
-                image: .onboarding1,
-                createAccount: createAccount,
-                login: login,
-                title: Text("Manage Properties with \(Text("Ease").italic())"),
-                subTitle: "Keep track of tenants, rent payments, leases, and property performance from a single dashboard.",
-                currentPage: currentPage,
-                pageIndex: 0
+        NavigationStack {
+            TabView(selection: $currentPage){
+                OnboardingView(
+                    image: .onboarding1,
+                    createAccount: createAccount,
+                    login: login,
+                    title: Text("Manage Properties with \(Text("Ease").italic())"),
+                    subTitle: "Keep track of tenants, rent payments, leases, and property performance from a single dashboard.",
+                    currentPage: currentPage,
+                    pageIndex: 0
+                    
+                )
+                .tag(0)
                 
-            )
-            .tag(0)
-            
-            OnboardingView(
-                image: .onboarding2,
-                createAccount: createAccount,
-                login: login,
-                title: Text("A \(Text("Better").italic()) Way To Pay Rent"),
-                subTitle: "Keep track of tenants, rent payments, leases, and property performance from a single dashboard.",
-                currentPage: currentPage,
-                pageIndex: 1
-            )
-            .tag(1)
-            
-            OnboardingView(
-                image: .onboarding3,
-                createAccount: createAccount,
-                login: login,
-                title: Text("Stay Connected & In \(Text("Control").italic())"),
-                subTitle: "Keep track of tenants, rent payments, leases, and property performance from a single dashboard.",
-                currentPage: currentPage,
-                pageIndex: 2
-            )
-            .tag(2)
+                OnboardingView(
+                    image: .onboarding2,
+                    createAccount: createAccount,
+                    login: login,
+                    title: Text("A \(Text("Better").italic()) Way To Pay Rent"),
+                    subTitle: "Keep track of tenants, rent payments, leases, and property performance from a single dashboard.",
+                    currentPage: currentPage,
+                    pageIndex: 1
+                )
+                .tag(1)
+                
+                OnboardingView(
+                    image: .onboarding3,
+                    createAccount: createAccount,
+                    login: login,
+                    title: Text("Stay Connected & In \(Text("Control").italic())"),
+                    subTitle: "Keep track of tenants, rent payments, leases, and property performance from a single dashboard.",
+                    currentPage: currentPage,
+                    pageIndex: 2
+                )
+                .tag(2)
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .ignoresSafeArea()
         }
-        .tabViewStyle(.page(indexDisplayMode: .never))
-        .ignoresSafeArea()
             
         
         
@@ -76,14 +78,15 @@ struct OnboardingView: View {
     
     var body: some View {
         
+        ScrollView {
             VStack(alignment: .leading) {
                 Image(image)
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: .infinity)
-                    .padding(.top, 10)
                     .padding(.bottom, 17)
-
+                    
+                
                 HStack(spacing: 8) {
                     ForEach(0..<3) { index in
                         Capsule()
@@ -93,34 +96,46 @@ struct OnboardingView: View {
                     }
                 }
                 .padding(.bottom, 41)
-
-                Text("\(title)")
-                    .font(.system(size: 29, weight: .medium))
-                    .foregroundStyle(.onyx500)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.bottom, 4)
-            
-
-                Text(subTitle)
-                    .font(.system(size: 15, weight: .regular))
-                    .foregroundStyle(.greu600)
-                    .padding(.bottom, 41)
-                    .lineHeight(.leading(increase: 8))
-
-                VStack {
-                    PrimaryButton(createAccount: createAccount, title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white)
-                        .padding(.bottom, 8)
-
-                    PrimaryButton(
-                        createAccount: login,
-                        title: "Login",
-                        isBackgroundColor: false,
-                        isBorder: true,
-                        titleColor: .primaryButton
-                    )
+                
+                VStack(alignment: .leading) {
+                    Text("\(title)")
+                        .font(.system(size: 29, weight: .medium))
+                        .foregroundStyle(.onyx500)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.bottom, 4)
+                    
+                    Text(subTitle)
+                        .font(.system(size: 15, weight: .regular))
+                        .foregroundStyle(.greu600)
+                        .padding(.bottom, 41)
+                        .lineHeight(.leading(increase: 8))
                 }
-
+                
+                
+                
+                
+                VStack {
+                    NavigationLink{
+                        CreateAccount()
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        PrimaryButton( title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white)
+                            .padding(.bottom, 8)
+                    }
+                    
+                    
+                    Button {} label: {
+                        PrimaryButton(
+                            title: "Login",
+                            isBackgroundColor: false,
+                            isBorder: true,
+                            titleColor: .primaryButton
+                        )
+                    }
+                    
+                }
+                
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -128,6 +143,7 @@ struct OnboardingView: View {
             .background(
                 .gray50
             )
+        }
         
     }
 }
