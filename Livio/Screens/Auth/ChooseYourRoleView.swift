@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ChooseYourRoleView: View {
-     @State private var isSelected: Bool = false
+     @State private var isTenantSelected: Bool = false
+    @State private var isLandLordSelected: Bool = false
     
     var body: some View {
         VStack(alignment: .leading){
@@ -26,18 +27,20 @@ struct ChooseYourRoleView: View {
                             .lineHeight(.leading(increase: 8))
                     }
                     Spacer(minLength: 12)
-                    RadioButtonRow(isSelected: isSelected, action: {})
+                    RadioButtonRow(isSelected: isLandLordSelected, action: {
+                        isLandLordSelected.toggle()
+                    })
                 }
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(isSelected ? Color.gray.opacity(0.08) : Color.clear)
+                        .fill(isLandLordSelected ? Color.clear : Color.clear)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.35), lineWidth: isSelected ? 1.5 : 1)
+                        .stroke(isLandLordSelected ? .greu600 : .gray300, lineWidth: isLandLordSelected ? 1 : 1)
                 )
                 .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .padding(.bottom, 12)
@@ -49,18 +52,20 @@ struct ChooseYourRoleView: View {
                             .lineHeight(.leading(increase: 8))
                     }
                     Spacer(minLength: 12)
-                    RadioButtonRow(isSelected: isSelected, action: {})
+                    RadioButtonRow(isSelected: isTenantSelected, action: {
+                        isTenantSelected.toggle()
+                    })
                 }
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(isSelected ? Color.gray.opacity(0.08) : Color.clear)
+                        .fill(isTenantSelected ? Color.clear : Color.clear)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.35), lineWidth: isSelected ? 1.5 : 1)
+                        .stroke(isTenantSelected ? .greu600 : .gray300, lineWidth: isTenantSelected ? 1 : 1)
                 )
                 .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 Spacer()
