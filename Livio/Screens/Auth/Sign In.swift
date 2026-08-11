@@ -1,13 +1,14 @@
 //
-//  CreateAccount.swift
+//  Sign In.swift
 //  Livio
 //
-//  Created by Toluwalase on 07/08/2026.
+//  Created by Toluwalase on 10/08/2026.
 //
 
 import SwiftUI
 
-struct CreateAccount: View {
+struct SignInView: View {
+    
     @State private var phoneNumber = ""
     @State private var password = ""
     @State private var confrimPassword = ""
@@ -17,30 +18,18 @@ struct CreateAccount: View {
     private let flagCodePairs: [(flag: String, code: String)] = [("🇳🇬", "+234"), ("🇺🇸", "+1"), ("🇬🇧", "+44")]
     @State private var showPassword = false
     @State private var showConfirmPassword = false
-    @State private var navigateToVerifyPhoneView = false
-    @State private var navigateToSignInView = false
-    
-    private func createAccount(){
-        print(
-            phoneNumber,
-            password,
-            confrimPassword
-        )
-    }
-    
+    @State private var navigateToForgetPasswordView = false
+    @State private var navigateToCreateAccountView = false
     var body: some View {
-        
-        
-        NavigationStack {
+        NavigationStack{
             VStack(alignment:.leading){
-                HeadingText("Sign up on Livio")
+                HeadingText("Welcome Back to Livio")
                     .padding(.bottom, 8)
-                RegularText("Create your account to start managing your lease and payments securely.")
+                RegularText("Sign in to manage your property or lease.")
                     .lineHeight(.leading(increase: 8))
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 24)
                 
-                
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading){
                     Text("Phone Number")
                         .font(.system(size: 15))
                         .fontWeight(.medium)
@@ -83,76 +72,71 @@ struct CreateAccount: View {
                     
                     //                password
                     VStack(alignment: .leading,) {
-                        TextFieldText("Password")
-                        passwordField(
-                            text: $password,
-                            placeHolder: "**********",
-                            isVisible: $showPassword
-                        )
+                        VStack(alignment: .leading,) {
+                            TextFieldText("Password")
+                            passwordField(
+                                text: $password,
+                                placeHolder: "**********",
+                                isVisible: $showPassword
+                            )
+                        }
+                        
+                        HStack{
+                            RegularText("Forgot password?", fontSize: 13)
+                            Spacer()
+                            NavigationLink("Reset") {
+                                ForgetPasswordView()
+                            }
+                            .font(.system(size: 13))
+                            .foregroundStyle(.goldenrod500)
+                            .underline()
+                                
+                        }
                     }
                     
-                    //                confirm password
-                    VStack(alignment: .leading, spacing: 12) {
-                        TextFieldText("Confirm Password")
-                        passwordField(
-                            text: $confrimPassword,
-                            placeHolder: "**********",
-                            isVisible: $showConfirmPassword
-                        )
-                    }.padding(.bottom, 12)
                     
                     
+                }.padding(.bottom, 40)
+                
+                Button{
+                    
+                } label: {
+                    PrimaryButton(title: "Sign In", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
                 }
+                
+                
+                
+                
+                
+                
+                
                 Spacer()
                 
-                 
-                    
-                    Button{
-                        createAccount()
-                        
-                        navigateToVerifyPhoneView = true
-                    }label: {
-                        PrimaryButton(title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
-                    }.padding(.bottom, 8)
-                    .navigationDestination(isPresented: $navigateToVerifyPhoneView, destination: {
-                        VerifyPhoneView()
-                            .navigationBarBackButtonHidden()
-                    }
-                    )
-                    
-                
-                
-                
                 HStack( spacing: 4) {
-                    RegularText("Already have an account?")
+                    RegularText("Don’t have an account? ")
                     
-                    Button("Sign In") {
-                        navigateToSignInView = true
+                    Button("Create an account") {
+                        navigateToCreateAccountView = true
                     }
                     .foregroundStyle(.orange)
-                    .navigationDestination(isPresented: $navigateToSignInView){
-                        SignInView()
-                    }.navigationBarBackButtonHidden()
+                    .navigationDestination(isPresented: $navigateToCreateAccountView){
+                        CreateAccount()
+                    }
+                    .navigationBarBackButtonHidden()
                 }
                 .font(.system(size: 15))
                 .frame(maxWidth: .infinity, alignment: .center)
                 
-                
-                
-                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .leading)
             .padding(.horizontal, 20)
             .padding(.top, 40)
-            .background(.gray50)
         }
-        
-        
     }
 }
 
 #Preview {
-    CreateAccount()
+    SignInView()
 }
 
 

@@ -11,14 +11,18 @@ import SwiftUI
 
 struct HeadingText:  View {
     var text: String
+    var fontSize: CGFloat
     
-    init(_ title: String) {
+    
+    init(_ title: String,fontSize: CGFloat = 23) {
         self.text =  title
+        self.fontSize = fontSize
+        
     }
     
     var body: some View {
         Text(text)
-            .font(.system(size: 23))
+            .font(.system(size: fontSize))
             .fontWeight(.medium)
     }
 }

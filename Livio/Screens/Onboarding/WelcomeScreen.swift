@@ -120,17 +120,21 @@ struct OnboardingView: View {
                         CreateAccount()
                             .navigationBarBackButtonHidden()
                     } label: {
-                        PrimaryButton( title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white)
+                        PrimaryButton( title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
                             .padding(.bottom, 8)
                     }
                     
                     
-                    Button {} label: {
+                    NavigationLink {
+                        SignInView()
+                            .navigationBarBackButtonHidden()
+                    } label: {
                         PrimaryButton(
                             title: "Login",
                             isBackgroundColor: false,
                             isBorder: true,
-                            titleColor: .primaryButton
+                            titleColor: .primaryButton,
+                            backgroudColor: .primaryButton
                         )
                     }
                     

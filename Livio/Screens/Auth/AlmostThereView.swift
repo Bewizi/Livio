@@ -15,8 +15,12 @@ struct AlmostThereView: View {
     
     @FocusState private var emailFieldIsFocused: Bool
     
-    @Binding var isOn: Bool
+    @State var isOn: Bool = false
 //    private func validate(name:String ){}
+    
+    let colors: [Color] = [.gray, .red, .orange, .yellow,
+                             .green, .blue, .purple, .pink]
+      @State private var fgColor: Color = .gray
     
     
     var body: some View {
@@ -125,14 +129,14 @@ struct AlmostThereView: View {
                 
                 HStack( spacing: 4) {
                     
-                    Button {
-                        isOn.toggle()
-                    }label: {
+                     
                         Image(systemName: isOn ? "checkmark.square.fill" : "square")
                             .imageScale(.large)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityValue(isOn ? "On" : "Off")
+                            .onTapGesture(count: 1) {
+                                isOn.toggle()
+                                
+                            }
+                    
                     
                     
                     Text("I agree to the \(Text("Terms of Service").foregroundStyle(.goldenrod500)) and \(Text("Privacy Policy").foregroundStyle(.goldenrod500)).")
@@ -148,7 +152,7 @@ struct AlmostThereView: View {
                     AgreeAndContView()
                         .navigationBarBackButtonHidden()
                 } label: {
-                    PrimaryButton(title: "Agree & Continue", isBackgroundColor: true, isBorder: false, titleColor: .white)
+                    PrimaryButton(title: "Agree & Continue", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
                 }
                 
                 
@@ -163,5 +167,5 @@ struct AlmostThereView: View {
 }
 
 #Preview {
-    AlmostThereView(isOn: .constant(false))
+    AlmostThereView()
 }
