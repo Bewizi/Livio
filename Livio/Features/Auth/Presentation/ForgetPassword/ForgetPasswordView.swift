@@ -31,8 +31,12 @@ struct ForgetPasswordView: View {
                     
                     TextField(
                         "Enter your email address",
-                        text: $email
+                        text: $email,
+                        prompt: Text("Phone Number")
+                  .font(.system(size: 15))
+                  .foregroundStyle(.gray600)
                     )
+                    .foregroundStyle(.gray950)
                     .focused($emailFieldIsFocused)
                     .onSubmit {
                         if email.isEmpty{
@@ -48,7 +52,7 @@ struct ForgetPasswordView: View {
                     .padding(12)
                     .background(
                         RoundedRectangle(cornerRadius: 12, style: .continuous)
-                            .fill(Color(.systemBackground))
+                            .fill(Color(.gray50))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                                     .stroke(.gray300)
@@ -62,11 +66,13 @@ struct ForgetPasswordView: View {
                 NavigationLink{
                     SendResetLinkView().navigationBarBackButtonHidden()
                 }label: {
-                    PrimaryButton(title: "Send Code", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .goldenrod500)
+                    PrimaryButton(title: "Send Code", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .goldenrod500)
                 }.padding(.bottom, 8)
                 Spacer()
-            }.padding(.horizontal, 20,)
+            }
+            .padding(.horizontal, 20,)
                 .padding(.top, 40)
+                .background(.gray50)
         }
     }
 }

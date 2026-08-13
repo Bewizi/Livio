@@ -14,7 +14,7 @@ struct PrimaryButton: View {
     let isBackgroundColor: Bool
     let isBorder: Bool
     let titleColor: Color
-    let backgroudColor: Color?
+    let backgroundColor: Color?
     
     
     var body: some View {
@@ -30,7 +30,7 @@ struct PrimaryButton: View {
         .background{
             if isBackgroundColor{
                 RoundedRectangle(cornerRadius: 24)
-                    .fill(((backgroudColor ?? .primaryButton)).gradient)
+                    .fill(((backgroundColor ?? .primaryButton)).gradient)
                     .overlay(
                         LinearGradient(colors: [
                             Color.white.opacity(0.18),

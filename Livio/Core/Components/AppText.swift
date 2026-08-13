@@ -24,6 +24,7 @@ struct HeadingText:  View {
         Text(text)
             .font(.system(size: fontSize))
             .fontWeight(.medium)
+            .foregroundStyle(.gray950)
     }
 }
 
@@ -34,7 +35,7 @@ struct RegularText:  View {
     
     init(_ title: String, color: Color? = nil, fontSize: CGFloat = 15) {
         self.text = title
-        self.color = color ?? .greu600
+        self.color = color ?? .gray600
         self.fontSize = fontSize
     }
     

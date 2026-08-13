@@ -45,7 +45,7 @@ struct VerifyPhoneView: View {
                     navigateToAlmostThereView = true
                 } label: {
                     PrimaryButton(
-                        title: "Next", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton
+                        title: "Next", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton
                     )
                 }.navigationDestination(isPresented: $navigateToAlmostThereView){
                     AlmostThereView()

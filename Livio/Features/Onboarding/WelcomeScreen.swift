@@ -50,15 +50,12 @@ struct WelcomeScreen: View {
                 )
                 .tag(2)
             }
+            .background(
+                .gray50
+            )
             .tabViewStyle(.page(indexDisplayMode: .never))
-            .ignoresSafeArea()
+            .ignoresSafeArea()   
         }
-            
-        
-        
-        
-        
-        
     }
 }
 
@@ -82,10 +79,10 @@ struct OnboardingView: View {
             VStack(alignment: .leading) {
                 Image(image)
                     .resizable()
-                    .scaledToFill()
+                    .frame(maxHeight: 450)
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 17)
-                    
+                
                 
                 HStack(spacing: 8) {
                     ForEach(0..<3) { index in
@@ -95,7 +92,7 @@ struct OnboardingView: View {
                             .animation(.easeInOut(duration: 0.25), value: currentPage)
                     }
                 }
-                .padding(.bottom, 41)
+                .padding(.bottom, 24)
                 
                 VStack(alignment: .leading) {
                     Text("\(title)")
@@ -107,47 +104,42 @@ struct OnboardingView: View {
                     
                     Text(subTitle)
                         .font(.system(size: 15, weight: .regular))
-                        .foregroundStyle(.greu600)
+                        .foregroundStyle(.gray600)
                         .padding(.bottom, 41)
                         .lineHeight(.leading(increase: 8))
                 }
                 
                 
-                
-                
-                VStack {
+                VStack (spacing: 8){
                     NavigationLink{
                         CreateAccount()
                             .navigationBarBackButtonHidden()
                     } label: {
-                        PrimaryButton( title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
-                            .padding(.bottom, 8)
+                        PrimaryButton( title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
+                            
                     }
                     
                     
-                    NavigationLink {
-                        SignInView()
+                    NavigationLink (destination: SignInView(viewModel: SignInViewModel())
                             .navigationBarBackButtonHidden()
-                    } label: {
-                        PrimaryButton(
-                            title: "Login",
-                            isBackgroundColor: false,
-                            isBorder: true,
-                            titleColor: .primaryButton,
-                            backgroudColor: .primaryButton
-                        )
-                    }
+                        ){
+                            PrimaryButton(
+                                title: "Login",
+                                isBackgroundColor: false,
+                                isBorder: true,
+                                titleColor: .primaryButton,
+                                backgroundColor: .primaryButton
+                            )
+                        }
                     
-                }
+                }.padding(0)
                 
                 Spacer()
             }
-            .padding(.horizontal, 20)
-            .ignoresSafeArea()
-            .background(
-                .gray50
-            )
         }
+        .padding(.horizontal, 20)
+            
+        
         
     }
 }

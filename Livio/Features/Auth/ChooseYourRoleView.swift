@@ -40,7 +40,7 @@ struct ChooseYourRoleView: View {
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(isLandLordSelected ? .greu600 : .gray300, lineWidth: isLandLordSelected ? 1 : 1)
+                        .stroke(isLandLordSelected ? .gray600 : .gray300, lineWidth: isLandLordSelected ? 1 : 1)
                 )
                 .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .padding(.bottom, 12)
@@ -65,14 +65,14 @@ struct ChooseYourRoleView: View {
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(isTenantSelected ? .greu600 : .gray300, lineWidth: isTenantSelected ? 1 : 1)
+                        .stroke(isTenantSelected ? .gray600 : .gray300, lineWidth: isTenantSelected ? 1 : 1)
                 )
                 .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 Spacer()
                 
                 NavigationLink{
                 } label: {
-                    PrimaryButton(title: "Continue", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
+                    PrimaryButton(title: "Continue", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                 }
             }
                 

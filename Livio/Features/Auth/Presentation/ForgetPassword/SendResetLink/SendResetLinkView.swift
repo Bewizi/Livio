@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SendResetLinkView: View {
     @State private var otpCode = ""
-    @State private var navigateToResetPasswordWiew = false
+    @State private var navigateToResetPasswordView = false
     
     @State private var isOn = false
     
@@ -42,12 +42,12 @@ struct SendResetLinkView: View {
                     .padding(.bottom, 40)
                     
                     Button{
-                        navigateToResetPasswordWiew = true
+                        navigateToResetPasswordView = true
                     } label: {
                         PrimaryButton(
-                            title: "Verify", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton
+                            title: "Verify", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton
                         )
-                    }.navigationDestination(isPresented: $navigateToResetPasswordWiew){
+                    }.navigationDestination(isPresented: $navigateToResetPasswordView){
                         ResetPasswordView()
                             .navigationBarBackButtonHidden()
                     }
@@ -65,7 +65,7 @@ struct SendResetLinkView: View {
         // Simple check: navigate when 6-digit code is entered
         if code.count == 6 {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            navigateToResetPasswordWiew = true
+            navigateToResetPasswordView = true
         }
     }
 }

@@ -31,7 +31,7 @@ struct OTPInputView: View {
     var body: some View {
         ZStack{
             TextField("", text: $code)
-                .keyboardType(.numberPad)
+                .keyboardType(.phonePad)
                 .textContentType(.oneTimeCode)
                 .focused($isFocused)
                 .frame(width: 1, height: 1)
@@ -118,7 +118,7 @@ private struct OTPBox : View {
             Text(character)
                 .font(
                     .system(size: 18, weight: .medium),
-                ).foregroundStyle(.primary)
+                ).foregroundStyle(.gray950)
         }
         .frame(width: 50, height: 56)
         .padding(.horizontal, 2)

@@ -57,7 +57,7 @@ struct RadioButtonRow: View {
             HStack(spacing: 12) {
                 // Toggles between checked and unchecked circle images
                 Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
-                    .foregroundColor(isSelected ? .gray950 : .greu600)
+                    .foregroundColor(isSelected ? .gray950 : .gray600)
                     .font(.system(size: 22))
                 
                 

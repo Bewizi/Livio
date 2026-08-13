@@ -9,17 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     
-    @State private var phoneNumber = ""
-    @State private var password = ""
-    @State private var confrimPassword = ""
-    
-    @State private var selectedFlag: String = "🇳🇬"
-    @State private var selectedCode: String = "+234"
-    private let flagCodePairs: [(flag: String, code: String)] = [("🇳🇬", "+234"), ("🇺🇸", "+1"), ("🇬🇧", "+44")]
-    @State private var showPassword = false
-    @State private var showConfirmPassword = false
-    @State private var navigateToForgetPasswordView = false
-    @State private var navigateToCreateAccountView = false
+    @StateObject var viewModel: SignInViewModel
     var body: some View {
         NavigationStack{
             VStack(alignment:.leading){
@@ -35,19 +25,21 @@ struct SignInView: View {
                         .fontWeight(.medium)
                         .foregroundStyle(.gray950)
                     HStack{
-                        Text(" \(selectedCode)")
+                        Text(" \(viewModel.selectedCode)")
                             .padding(.horizontal, 12)
                             .font(.system(size: 15))
+                            .foregroundStyle(.gray800)
                         
                         
-                        TextField("Phone Number", text: $phoneNumber)
+                        TextField("Phone Number", text: $viewModel.phoneNumber, prompt: Text("Phone Number").font(.system(size: 15)).foregroundStyle(.gray600),)
+                            .foregroundStyle(.gray950)
                             .padding(.all, 12)
                         
                         Menu {
-                            ForEach(flagCodePairs, id: \.code) { pair in
+                            ForEach(viewModel.flagCodePairs, id: \.code) { pair in
                                 Button(action: {
-                                    selectedFlag = pair.flag
-                                    selectedCode = pair.code
+                                    viewModel.selectedFlag = pair.flag
+                                    viewModel.selectedCode = pair.code
                                 }) {
                                     HStack {
                                         Text(pair.flag)
@@ -57,7 +49,7 @@ struct SignInView: View {
                             }
                         } label: {
                             HStack(spacing: 6) {
-                                Text("\(selectedFlag)")
+                                Text("\(viewModel.selectedFlag)")
                                 Image(systemName: "chevron.down")
                             }
                         }
@@ -75,10 +67,12 @@ struct SignInView: View {
                         VStack(alignment: .leading,) {
                             TextFieldText("Password")
                             passwordField(
-                                text: $password,
+                                text: $viewModel.password,
                                 placeHolder: "**********",
-                                isVisible: $showPassword
+                                prompt: Text("Password").font(.system(size: 15)).foregroundStyle(.gray600),
+                                isVisible: $viewModel.showPassword
                             )
+                            .foregroundStyle(.gray950)
                         }
                         
                         HStack{
@@ -93,21 +87,14 @@ struct SignInView: View {
                                 
                         }
                     }
-                    
-                    
-                    
                 }.padding(.bottom, 40)
+                
                 
                 Button{
                     
                 } label: {
-                    PrimaryButton(title: "Sign In", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
+                    PrimaryButton(title: "Sign In", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                 }
-                
-                
-                
-                
-                
                 
                 
                 Spacer()
@@ -116,10 +103,10 @@ struct SignInView: View {
                     RegularText("Don’t have an account? ")
                     
                     Button("Create an account") {
-                        navigateToCreateAccountView = true
+                        viewModel.navigateToCreateAccountView = true
                     }
                     .foregroundStyle(.orange)
-                    .navigationDestination(isPresented: $navigateToCreateAccountView){
+                    .navigationDestination(isPresented: $viewModel.navigateToCreateAccountView){
                         CreateAccount()
                     }
                     .navigationBarBackButtonHidden()
@@ -131,12 +118,13 @@ struct SignInView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .leading)
             .padding(.horizontal, 20)
             .padding(.top, 40)
+            .background(.gray50)
         }
     }
 }
 
 #Preview {
-    SignInView()
+     SignInView(viewModel: SignInViewModel())
 }
 
 
@@ -144,14 +132,15 @@ struct SignInView: View {
 private func passwordField(
     text: Binding<String>,
     placeHolder: String,
+    prompt: Text,
     isVisible: Binding<Bool>,
     hasError: Bool = false
 )->some View{
     HStack{
         if isVisible.wrappedValue{
-            TextField(placeHolder, text: text)
+            TextField(placeHolder, text: text, prompt: prompt)
         }else{
-            SecureField(placeHolder, text: text)
+            SecureField(placeHolder, text: text, prompt: prompt)
         }
         Button{
             isVisible.wrappedValue.toggle()

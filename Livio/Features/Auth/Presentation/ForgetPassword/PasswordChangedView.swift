@@ -37,14 +37,15 @@ struct PasswordChangedView: View {
                 
                 
                 
-                NavigationLink(destination: SignInView()) {
-                    PrimaryButton(title: "Back to login", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
+                NavigationLink(destination: SignInView(viewModel: SignInViewModel())) {
+                    PrimaryButton(title: "Back to login", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                 }
                 
                 
             }.padding(.horizontal, 20)
                 .padding(.top, 40)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.gray50)
         }
     }
 }

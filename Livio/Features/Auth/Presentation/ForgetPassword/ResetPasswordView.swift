@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     @State private var password = ""
-    @State private var confrimPassword = ""
+    @State private var confirmPassword = ""
     
     @State private var showPassword = false
     @State private var showConfirmPassword = false
     
-    @State private var navigateToPasswordChnaged = false
+    @State private var navigateToPasswordChanged = false
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading){
@@ -35,25 +35,27 @@ struct ResetPasswordView: View {
                     passwordField(
                         text: $password,
                         placeHolder: "**********",
+                        prompt: Text("**********").font(.system(size: 15)).foregroundStyle(.gray600),
                         isVisible: $showPassword
-                    )
+                    ).foregroundStyle(.gray950)
                 }
                 
                 //                confirm password
                 VStack(alignment: .leading, spacing: 12) {
                     TextFieldText("Confirm Password")
                     passwordField(
-                        text: $confrimPassword,
+                        text: $confirmPassword,
                         placeHolder: "**********",
+                        prompt: Text("**********").font(.system(size: 15)).foregroundStyle(.gray600),
                         isVisible: $showConfirmPassword
-                    )
+                    ).foregroundStyle(.gray950)
                 }.padding(.bottom, 40)
                 
                 Button{
-                    navigateToPasswordChnaged = true
+                    navigateToPasswordChanged = true
                 } label: {
-                    PrimaryButton(title: "Reset password", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
-                }.navigationDestination(isPresented: $navigateToPasswordChnaged){
+                    PrimaryButton(title: "Reset password", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
+                }.navigationDestination(isPresented: $navigateToPasswordChanged){
                     PasswordChangedView()
                         .navigationBarBackButtonHidden()
                 }
@@ -65,6 +67,7 @@ struct ResetPasswordView: View {
             .padding(.horizontal, 20)
             .padding(.top, 40)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .background(.gray50)
         }
         
         
@@ -80,14 +83,15 @@ struct ResetPasswordView: View {
 private func passwordField(
     text: Binding<String>,
     placeHolder: String,
+    prompt: Text,
     isVisible: Binding<Bool>,
     hasError: Bool = false
 )->some View{
     HStack{
         if isVisible.wrappedValue{
-            TextField(placeHolder, text: text)
+            TextField(placeHolder, text: text, prompt: prompt )
         }else{
-            SecureField(placeHolder, text: text)
+            SecureField(placeHolder, text: text, prompt: prompt )
         }
         Button{
             isVisible.wrappedValue.toggle()

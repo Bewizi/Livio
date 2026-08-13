@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateAccount: View {
     @State private var phoneNumber = ""
     @State private var password = ""
-    @State private var confrimPassword = ""
+    @State private var confirmPassword = ""
     
     @State private var selectedFlag: String = "🇳🇬"
     @State private var selectedCode: String = "+234"
@@ -24,7 +24,7 @@ struct CreateAccount: View {
         print(
             phoneNumber,
             password,
-            confrimPassword
+            confirmPassword
         )
     }
     
@@ -49,10 +49,18 @@ struct CreateAccount: View {
                         Text(" \(selectedCode)")
                             .padding(.horizontal, 12)
                             .font(.system(size: 15))
+                            .foregroundStyle(.gray800)
+                            
                         
-                        
-                        TextField("Phone Number", text: $phoneNumber)
-                            .padding(.all, 12)
+                        TextField("Phone Number", text: $phoneNumber,
+                                  prompt: Text("Phone Number")
+                            .font(.system(size: 15))
+                            .foregroundStyle(.gray600)
+                        )
+                        .keyboardType(.phonePad)
+                        .foregroundStyle(.gray950)
+                        .padding(.all, 12)
+                            
                         
                         Menu {
                             ForEach(flagCodePairs, id: \.code) { pair in
@@ -87,19 +95,28 @@ struct CreateAccount: View {
                         passwordField(
                             text: $password,
                             placeHolder: "**********",
+                            prompt: Text("**********")
+                      .font(.system(size: 15))
+                      .foregroundStyle(.gray600),
                             isVisible: $showPassword
                         )
+                        .foregroundStyle(.gray950)
                     }
                     
                     //                confirm password
                     VStack(alignment: .leading, spacing: 12) {
                         TextFieldText("Confirm Password")
                         passwordField(
-                            text: $confrimPassword,
+                            text: $confirmPassword,
                             placeHolder: "**********",
+                            prompt: Text("**********")
+                      .font(.system(size: 15))
+                      .foregroundStyle(.gray600),
                             isVisible: $showConfirmPassword
                         )
-                    }.padding(.bottom, 12)
+                    }
+                    .foregroundStyle(.gray950)
+                    .padding(.bottom, 12)
                     
                     
                 }
@@ -112,7 +129,7 @@ struct CreateAccount: View {
                         
                         navigateToVerifyPhoneView = true
                     }label: {
-                        PrimaryButton(title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroudColor: .primaryButton)
+                        PrimaryButton(title: "Create an account", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                     }.padding(.bottom, 8)
                     .navigationDestination(isPresented: $navigateToVerifyPhoneView, destination: {
                         VerifyPhoneView()
@@ -131,7 +148,7 @@ struct CreateAccount: View {
                     }
                     .foregroundStyle(.orange)
                     .navigationDestination(isPresented: $navigateToSignInView){
-                        SignInView()
+                        SignInView(viewModel: SignInViewModel())
                     }.navigationBarBackButtonHidden()
                 }
                 .font(.system(size: 15))
@@ -160,14 +177,16 @@ struct CreateAccount: View {
 private func passwordField(
     text: Binding<String>,
     placeHolder: String,
+    prompt: Text,
     isVisible: Binding<Bool>,
     hasError: Bool = false
 )->some View{
     HStack{
         if isVisible.wrappedValue{
-            TextField(placeHolder, text: text)
+            TextField(placeHolder, text: text, prompt: prompt)
         }else{
-            SecureField(placeHolder, text: text)
+            SecureField(placeHolder, text: text, prompt: prompt)
+            
         }
         Button{
             isVisible.wrappedValue.toggle()
