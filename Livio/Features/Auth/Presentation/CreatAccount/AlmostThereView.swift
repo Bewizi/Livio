@@ -19,7 +19,6 @@ struct AlmostThereView: View {
 //    private func validate(name:String ){}
     
     var body: some View {
-        NavigationStack {
             VStack(alignment:.leading){
                 HeadingText("You’re almost there!")
                     .padding(.bottom, 8)
@@ -173,7 +172,6 @@ struct AlmostThereView: View {
             .padding(.horizontal, 20)
             .padding(.top, 40)
             .background(.gray50)
-        }
     }
 }
 

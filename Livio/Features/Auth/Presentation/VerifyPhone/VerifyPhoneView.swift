@@ -15,7 +15,6 @@ struct VerifyPhoneView: View {
     @State private var isOn = false
     
     var body: some View {
-        NavigationStack {
             VStack(alignment:.leading){
                 HeadingText("Enter Code ")
                     .padding(.bottom, 8)
@@ -57,7 +56,7 @@ struct VerifyPhoneView: View {
                 .padding(.top, 40)
                 .padding(.horizontal, 20)
                 .background(.gray50)
-        }
+        
             
             
     }

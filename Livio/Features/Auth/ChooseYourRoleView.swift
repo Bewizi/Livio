@@ -71,6 +71,8 @@ struct ChooseYourRoleView: View {
                 Spacer()
                 
                 NavigationLink{
+                    MainTabView()
+                        .navigationBarBackButtonHidden()
                 } label: {
                     PrimaryButton(title: "Continue", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                 }

@@ -16,7 +16,6 @@ struct ForgetPasswordView: View {
     
     @FocusState private var emailFieldIsFocused: Bool
     var body: some View {
-        NavigationStack {
             VStack(alignment: .leading){
                 HeadingText("Forgot password?")
                     .padding(.bottom, 8)
@@ -74,7 +73,6 @@ struct ForgetPasswordView: View {
                 .padding(.top, 40)
                 .background(.gray50)
         }
-    }
 }
 
 #Preview {

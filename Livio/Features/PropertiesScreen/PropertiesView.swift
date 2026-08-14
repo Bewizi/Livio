@@ -14,8 +14,15 @@ struct PropertiesView: View {
                 Text("Properties")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundStyle(.gray950)
             }
-        }.navigationTitle("🏢 Properties")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .navigationTitle("🏢 Properties")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.light)
+            .background(.gray50)
+            
+        }
     }
 }
 

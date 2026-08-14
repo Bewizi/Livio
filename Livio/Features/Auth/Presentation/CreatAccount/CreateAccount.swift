@@ -29,9 +29,6 @@ struct CreateAccount: View {
     }
     
     var body: some View {
-        
-        
-        NavigationStack {
             VStack(alignment:.leading){
                 HeadingText("Sign up on Livio")
                     .padding(.bottom, 8)
@@ -136,9 +133,6 @@ struct CreateAccount: View {
                             .navigationBarBackButtonHidden()
                     }
                     )
-                    
-                
-                
                 
                 HStack( spacing: 4) {
                     RegularText("Already have an account?")
@@ -153,18 +147,11 @@ struct CreateAccount: View {
                 }
                 .font(.system(size: 15))
                 .frame(maxWidth: .infinity, alignment: .center)
-                
-                
-                
-                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.horizontal, 20)
             .padding(.top, 40)
             .background(.gray50)
-        }
-        
-        
     }
 }
 

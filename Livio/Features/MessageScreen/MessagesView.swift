@@ -1,31 +1,30 @@
 //
-//  HomeView.swift
+//  MessagesView.swift
 //  Livio
 //
-//  Created by Toluwalase on 13/08/2026.
+//  Created by Toluwalase on 14/08/2026.
 //
 
 import SwiftUI
 
-struct HomeView: View {
+struct MessagesView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Text("Home")
+                Text("Messages")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundStyle(.gray950)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationTitle("🏠 Home")
+            .navigationTitle("💬 Messages")
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.light)
             .background(.gray50)
-            
         }
     }
 }
 
 #Preview {
-    HomeView()
+    MessagesView()
 }

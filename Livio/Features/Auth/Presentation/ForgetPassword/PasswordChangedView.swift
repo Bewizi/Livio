@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PasswordChangedView: View {
     var body: some View {
-        NavigationStack {
             VStack{
                 ZStack {
                     Circle()
@@ -47,7 +46,6 @@ struct PasswordChangedView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.gray50)
         }
-    }
 }
 
 #Preview {

@@ -12,7 +12,6 @@ struct AgreeAndContView: View {
     @State private var navigateToChooseYourRole = false
     
     var body: some View {
-        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading){
                     //            logo
@@ -69,7 +68,6 @@ struct AgreeAndContView: View {
                 .padding(.horizontal, 20)
             }.background(.gray50)
         }
-    }
 }
 
 #Preview {

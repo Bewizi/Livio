@@ -16,7 +16,6 @@ struct ResetPasswordView: View {
     
     @State private var navigateToPasswordChanged = false
     var body: some View {
-        NavigationStack {
             VStack(alignment: .leading){
                 VStack(alignment: .leading){
                     HeadingText("Reset your password")
@@ -69,9 +68,6 @@ struct ResetPasswordView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .background(.gray50)
         }
-        
-        
-    }
 }
 
 #Preview {

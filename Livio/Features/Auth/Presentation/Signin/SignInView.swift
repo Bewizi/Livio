@@ -11,7 +11,6 @@ struct SignInView: View {
     
     @StateObject var viewModel: SignInViewModel
     var body: some View {
-        NavigationStack{
             VStack(alignment:.leading){
                 HeadingText("Welcome Back to Livio")
                     .padding(.bottom, 8)
@@ -90,8 +89,9 @@ struct SignInView: View {
                 }.padding(.bottom, 40)
                 
                 
-                Button{
-                    
+                NavigationLink{
+                    MainTabView()
+                        .navigationBarBackButtonHidden()
                 } label: {
                     PrimaryButton(title: "Sign In", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                 }
@@ -119,7 +119,6 @@ struct SignInView: View {
             .padding(.horizontal, 20)
             .padding(.top, 40)
             .background(.gray50)
-        }
     }
 }
 

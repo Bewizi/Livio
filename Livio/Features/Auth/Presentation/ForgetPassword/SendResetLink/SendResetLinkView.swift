@@ -14,7 +14,6 @@ struct SendResetLinkView: View {
     @State private var isOn = false
     
     var body: some View {
-        NavigationStack {
             VStack{
                 VStack(alignment:.leading){
                     HeadingText("Please check your email")
@@ -59,7 +58,6 @@ struct SendResetLinkView: View {
                     .background(.gray50)
             }
         }
-    }
     
     private func verifyOTP(_ code:String){
         // Simple check: navigate when 6-digit code is entered
