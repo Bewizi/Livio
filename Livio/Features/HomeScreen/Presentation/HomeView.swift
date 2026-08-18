@@ -12,8 +12,8 @@ struct HomeView: View {
         NavigationStack{
             ScrollView {
                 VStack(alignment:.leading){
+                    
                     HStack{
-                        
                         HStack(spacing: 12){
                             //                image
                             Image( .user)
@@ -37,7 +37,9 @@ struct HomeView: View {
                         .frame(width: 40, height: 40)
                             .badge(1)
                             
-                    }.padding(.bottom, 24)
+                    }
+                    .padding(.top, 40)
+                    .padding(.bottom, 24)
                     
                     VStack {
                         ZStack(alignment: .leading){
@@ -52,15 +54,15 @@ struct HomeView: View {
                                         .padding(.bottom, 8)
                                     
                                     //                                price
-                                    HStack(alignment: .top){
+                                    HStack(alignment: .top, spacing: -2){
                                         Image(systemName: "nairasign")
                                         
-                                        Text("420,500,000.\(Text("00").foregroundStyle(.gray600))")
+                                        HeadingText(title: Text("420,500,000.\(Text("00").foregroundStyle(.gray600))"), color: .white)
                                             .lineLimit(1)
                                             .minimumScaleFactor(0.8)
                                     }
                                     .padding(.bottom, 8)
-                                    .font(.system(size: 29, weight: .medium,))
+                                    .font(.system(size: 20, weight: .medium,))
                                     .foregroundStyle(.white)
                                     
                                     
@@ -103,19 +105,59 @@ struct HomeView: View {
                     
                     OccupantsView()
                         .padding(.top,16)
-                        
-                        
+                        .padding(.bottom,16)
                     
+                    QuickActionsCom().padding(.bottom,16)
+                    
+                    VStack(alignment: .leading, spacing: 12){
+                        HeadingText("Recent Activity", fontSize: 15, color: .gray950 )
                         
+                        HStack(alignment: .top){
+                            VStack(alignment: .leading, spacing: 8){
+                                HeadingText("Rent Payment Received", fontSize: 15, color: .gray950 )
+                                HeadingText(title: Text("Unit 402, Oak Ridge Estates •\n\(Text("2 hours ago").foregroundStyle(.gray500))"), fontSize: 13, color: .gray800).lineHeight(.leading(increase: 8))
+                            }
+                            
+                            Spacer()
+                            
+                            HStack(spacing: -2){
+                                Image(systemName: "plus")
+                                Image(systemName: "nairasign")
+                                HeadingText("1,850,000.00", fontSize: 15, color: .success600)
+                            }
+                            .foregroundStyle(.success600)
+                            .font(.system(size: 15))
+                        }
+                        
+                        HStack(alignment: .top){
+                            VStack(alignment: .leading, spacing: 8){
+                                HeadingText("Maintenance Request: \nWater Leak", fontSize: 15, color: .gray950 )
+                                HeadingText(title: Text("Unit 115, Sunset Villas • \(Text("8 hours ago").foregroundStyle(.gray500))"), fontSize: 13, color: .gray800).lineHeight(.leading(increase: 8))
+                            }
+                            
+                            Spacer()
+                            
+                            HStack(){
+                                HeadingText("High Priority", fontSize: 10, color: .error600)
+                            }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 24)
+                                    .fill(Color.error600.opacity(0.15))
+                            )
+                        }
+                    }
                 }
                 
             }.padding(.horizontal, 20)
-                .padding(.top, 40)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationBarTitleDisplayMode(.large)
                 .toolbarColorScheme(.light)
                 .background(.gray50)
-                .safeAreaInset(edge: .bottom, spacing: 0){}
+                .safeAreaInset(edge: .bottom, spacing: 0){
+                    Color.clear.frame(height: 0)
+                }
         }
     }
 }
