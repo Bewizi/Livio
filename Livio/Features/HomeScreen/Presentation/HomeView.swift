@@ -174,6 +174,8 @@ struct HomeView: View {
     VStack{
         VStack(alignment: .leading, spacing: 8){
             HeadingText(title, fontSize: 13, fontWeight: .regular, color: .gray600)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
             HeadingText(subTitle, fontSize: 15, color: textColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

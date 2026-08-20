@@ -77,6 +77,8 @@ struct MainTabView: View {
                     )
 
                 Text(title)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
                     .font(.system(size: 13))
                     .foregroundStyle(
                         selectedTab == index
