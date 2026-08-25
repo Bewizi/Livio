@@ -10,6 +10,8 @@ import SwiftUI
 struct PropertiesView: View {
     
     @State private var searchText = ""
+    @Binding var navigateToPDViews: Bool
+    @State var navigateToAddProperty: Bool = false
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -69,11 +71,16 @@ struct PropertiesView: View {
                             .stroke(.orange400.opacity(0.50), lineWidth: 1)
                     )
                     
-                    PropertyCard(
-                        propertyName: "Harborview Towers", propertyAddress: "1248 Oceanside Blvd, Marina District", progressValue: 23, progressPercent: "23",
-                        units: "24 Units", leased: "22/24 Leased"
-                    )
+                    NavigationLink {
+                      PropertiesDetailsView()
+                    } label: {
+                        PropertyCard(
+                            propertyName: "Harborview Towers", propertyAddress: "1248 Oceanside Blvd, Marina District", progressValue: 23, progressPercent: "23",
+                            units: "24 Units", leased: "22/24 Leased"
+                        )
                         .padding(.top, 16)
+                    }
+                        
                     
                     PropertyCard(
                         propertyName: "Brick & Beam Lofts", propertyAddress: "202 Industrial Ave, Downtown", progressValue: 92, progressPercent: "92",
@@ -90,10 +97,14 @@ struct PropertiesView: View {
                 }
                 
                 FloatingAddButton {
-                    
+                    navigateToAddProperty = true
                 }
                 .padding(.trailing, 24)
                 .padding(.bottom, 24)
+                .navigationDestination(isPresented: $navigateToAddProperty) {
+                    AddPropertyView()
+                }
+                
             }
             .navigationTitle("Property Directory")
             .navigationBarTitleDisplayMode(.inline)
@@ -113,5 +124,5 @@ struct PropertiesView: View {
 }
 
 #Preview {
-    PropertiesView()
+    PropertiesView(navigateToPDViews: .constant(false))
 }

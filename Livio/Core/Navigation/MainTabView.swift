@@ -21,7 +21,7 @@ struct MainTabView: View {
                     HomeView()
 
                 case 1:
-                    PropertiesView()
+                    PropertiesView(navigateToPDViews: .constant(false))
 
                 case 2:
                     MessagesView()

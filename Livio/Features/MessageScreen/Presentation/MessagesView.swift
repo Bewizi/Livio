@@ -17,8 +17,8 @@ struct MessagesView: View {
                     .foregroundStyle(.gray950)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationTitle("💬 Messages")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("Messages")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.light)
             .background(.gray50)
         }

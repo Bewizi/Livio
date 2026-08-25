@@ -22,13 +22,8 @@ struct VerifyPhoneView: View {
                     .lineHeight(.leading(increase: 8))
                 
                 
-                OTPInputView(code: $otpCode,length: 6){
-                    code in
-                    
-                    print("OTP entererd \(code)")
-                    
-                    verifyOTP(code)
-                }
+                OTPTextField(numberOfFields: 6)
+                    .padding(.top, 24)
                 
                 HStack( spacing: 4) {
                     RegularText("Try again after")
