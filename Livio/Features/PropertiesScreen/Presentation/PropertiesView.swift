@@ -11,7 +11,6 @@ struct PropertiesView: View {
     
     @State private var searchText = ""
     @Binding var navigateToPDViews: Bool
-    @State var navigateToAddProperty: Bool = false
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -96,13 +95,12 @@ struct PropertiesView: View {
                 .padding(.bottom, 96)
                 }
                 
-                FloatingAddButton {
-                    navigateToAddProperty = true
-                }
-                .padding(.trailing, 24)
-                .padding(.bottom, 24)
-                .navigationDestination(isPresented: $navigateToAddProperty) {
-                    AddPropertyView()
+                NavigationLink {
+                   AddPropertyView()
+                }label: {
+                    FloatingAddButton()
+                    .padding(.trailing, 24)
+                    .padding(.bottom, 24)
                 }
                 
             }

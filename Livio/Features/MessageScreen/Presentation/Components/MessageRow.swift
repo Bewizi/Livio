@@ -9,7 +9,7 @@ import SwiftUI
 
 
 
-struct MessageData: Identifiable {
+struct MessageData: Identifiable , Hashable{
     let id = UUID()
     let senderName: String
     let subtitle: String
@@ -18,6 +18,13 @@ struct MessageData: Identifiable {
     let timestamp: String
     let isUnread: Bool
     let avatarImageName: String?
+    
+    static func == (lhs: MessageData, rhs: MessageData) -> Bool {
+        lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 
@@ -27,52 +34,58 @@ struct MessageRow: View {
     let message: MessageData
     
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            // Avatar
-            if let imageName = message.avatarImageName {
-                Image(imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 48, height: 48)
-                    .clipShape(Circle())
-            } else {
-                Circle()
-                    .fill(Color.gray300)
-                    .frame(width: 48, height: 48)
-            }
-            
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text(message.senderName)
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(.gray950)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 6) {
-                        Text(message.timestamp)
-                            .font(.system(size: 13))
-                            .foregroundStyle(.gray500)
-                        if message.isUnread {
-                            Circle()
-                                .fill(Color.error600)
-                                .frame(width: 6, height: 6)
-                        }
-                    }
+        NavigationLink {
+           ChatView(message: message)
+        }label: {
+            HStack(alignment: .top, spacing: 12) {
+                // Avatar
+                if let imageName = message.avatarImageName {
+                    Image(imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 48, height: 48)
+                        .clipShape(Circle())
+                } else {
+                    Circle()
+                        .fill(Color.gray300)
+                        .frame(width: 48, height: 48)
                 }
                 
-                Text(message.subtitle)
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(message.subtitleColor)
-                
-                Text(message.preview)
-                    .font(.system(size: 14))
-                    .foregroundStyle(.gray700)
-                    .lineLimit(2)
-                    .frame(maxWidth: 250, alignment: .leading)
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Text(message.senderName)
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundStyle(.gray950)
+                        
+                        Spacer()
+                        
+                        HStack(spacing: 6) {
+                            Text(message.timestamp)
+                                .font(.system(size: 13))
+                                .foregroundStyle(.gray500)
+                            if message.isUnread {
+                                Circle()
+                                    .fill(Color.error600)
+                                    .frame(width: 6, height: 6)
+                            }
+                        }
+                    }
+                    
+                    Text(message.subtitle)
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(message.subtitleColor)
+                    
+                    Text(message.preview)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.gray700)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: 250, alignment: .leading)
+                }
             }
+            .padding(.vertical, 12)
         }
-        .padding(.vertical, 12)
+    
     }
 }
 

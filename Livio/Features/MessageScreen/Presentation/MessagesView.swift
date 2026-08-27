@@ -30,7 +30,7 @@ struct MessagesView: View {
             timestamp: "2m ago",
             isUnread: true,
             avatarImageName: "user"
-                   ),
+        ),
         
         MessageData(
             senderName: "Abdul UIUX",
@@ -49,6 +49,26 @@ struct MessagesView: View {
             preview: "I've sent the rent payment through the portal just now. Have a nice day!",
             timestamp: "Yesterday",
             isUnread: true,
+            avatarImageName: "user"
+        ),
+        
+        MessageData(
+            senderName: "Kelvin Emmanuel",
+            subtitle: "Unit 312",
+            subtitleColor: .goldenrod500,
+            preview: "Is it possible to renew my lease for another 6 months instead of a year?",
+            timestamp: "2 days ago",
+            isUnread: false,
+            avatarImageName: "user"
+        ),
+        
+        MessageData(
+            senderName: "Kelvin Emmanuel",
+            subtitle: "Unit 312",
+            subtitleColor: .goldenrod500,
+            preview: "Is it possible to renew my lease for another 6 months instead of a year?",
+            timestamp: "2 days ago",
+            isUnread: false,
             avatarImageName: "user"
         ),
         
@@ -129,7 +149,7 @@ struct MessagesView: View {
                         
                     }
                     
-                    ScrollView{
+                    ScrollView (.vertical, showsIndicators: false){
                         LazyVStack(spacing: 0) {
                             ForEach(filteredMessages) { message in
                                 MessageRow(message: message)
@@ -139,28 +159,22 @@ struct MessagesView: View {
                             }
                         }
                     }
-                    
-                    
-                    
-                    
+                    .frame(maxHeight: .infinity)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 40)
                 .padding(.horizontal, 20)
                 .navigationTitle("Messages")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbarColorScheme(.light)
-                .safeAreaBar(edge: .bottom, spacing: 2){}
+                //                .safeAreaBar(edge: .bottom, spacing: 2){}
                 .background(.gray50)
                 
                 FloatingAddButton (
-                    action: {},
                     iconImage: "quill-write-01"
                 )
                 .padding(.trailing, 24)
                 .padding(.bottom, 24)
-                
-                
-                
             }
         }
     }
