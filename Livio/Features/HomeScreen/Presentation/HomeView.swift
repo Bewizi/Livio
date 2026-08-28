@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationStack{
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment:.leading){
                     
                     HStack{
@@ -27,15 +27,19 @@ struct HomeView: View {
                         Spacer()
                         
                         //                icon
-                        ZStack{
-                            Circle()
-                                .foregroundStyle(.primaryButton)
-                            
-                            Image(systemName: "bell")
-                                .foregroundStyle(.white)
-                        }
-                        .frame(width: 40, height: 40)
+                        NavigationLink {
+                            NotificationScreen()
+                        }label: {
+                            ZStack{
+                                Circle()
+                                    .foregroundStyle(.primaryButton)
+                                
+                                Image(systemName: "bell")
+                                    .foregroundStyle(.white)
+                            }
+                            .frame(width: 40, height: 40)
                             .badge(1)
+                        }
                             
                     }
                     .padding(.top, 40)
