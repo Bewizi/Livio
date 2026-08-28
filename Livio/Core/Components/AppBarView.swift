@@ -44,7 +44,6 @@ struct AppBarView: View {
                     )
             }
         }
-        .padding(.horizontal, 20)
     }
 }
 

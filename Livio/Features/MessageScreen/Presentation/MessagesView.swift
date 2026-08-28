@@ -167,7 +167,6 @@ struct MessagesView: View {
                 .navigationTitle("Messages")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbarColorScheme(.light)
-                //                .safeAreaBar(edge: .bottom, spacing: 2){}
                 .background(.gray50)
                 
                 FloatingAddButton (

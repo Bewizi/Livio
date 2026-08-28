@@ -128,6 +128,7 @@ struct AddPropertyAmenities: View {
                                     .onAppear{
                                         isFocused = true
                                     }
+                                    .colorScheme(.light)
                                 
                                 TextField("icon", text: $fullAddress)
                                     .foregroundStyle(.gray600)
@@ -145,6 +146,7 @@ struct AddPropertyAmenities: View {
                                     .onAppear{
                                         isFocused = true
                                     }
+                                    .colorScheme(.light)
                                     .padding(.top, 12)
                                 
                                 Label("Suggest Icon", image: "magic-wand-03")

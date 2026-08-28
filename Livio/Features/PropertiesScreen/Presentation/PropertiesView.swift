@@ -17,8 +17,9 @@ struct PropertiesView: View {
             
             VStack {
                 AppBarView( title: "Property Directory", isBackButton: false)
+                    .padding(.horizontal, 20)
                 ZStack(alignment: .bottomTrailing) {
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading){
                             HeadingText("Manage your real estate portfolio across 8 active\n locations.",  fontSize: 15, color: .gray600)
                                 .lineLimit(2)
@@ -37,7 +38,7 @@ struct PropertiesView: View {
                                 .font(.system(size: 15))
                                 .foregroundStyle(.gray950)
                                 .tint(.gray600)
-                                
+                                .colorScheme(.light)
                                 
                             }
                             .padding(.horizontal, 20)

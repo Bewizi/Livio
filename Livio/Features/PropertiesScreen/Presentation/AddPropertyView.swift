@@ -20,9 +20,15 @@ struct AddPropertyView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading){
+                    AppBarView( title: "Add Propetery", isBackButton: true)
+                    
+                    Divider()
+                        .background(.gray50)
+                    
                     HeadingText("General Details", fontSize: 15)
+                        .padding(.top, 24)
                     Divider()
                         .padding(.top, 8)
                         .padding(.bottom, 12)
@@ -46,6 +52,7 @@ struct AddPropertyView: View {
                             .onAppear{
                                 isFocused = true
                             }
+                            .colorScheme(.light)
                     }
                     
                     //                    full address
@@ -60,7 +67,6 @@ struct AddPropertyView: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(.gray300)
                             )
-                        
                             .onSubmit {
                                 print(firstName)
                             }
@@ -68,6 +74,7 @@ struct AddPropertyView: View {
                             .onAppear{
                                 isFocused = true
                             }
+                            .colorScheme(.light)
                     }
                     .padding(.top, 12)
                     
@@ -92,6 +99,7 @@ struct AddPropertyView: View {
                                 .onAppear{
                                     isFocused = true
                                 }
+                                .colorScheme(.light)
                         }
                         
                         //                    Number of Units
@@ -115,6 +123,7 @@ struct AddPropertyView: View {
                                 .onAppear{
                                     isFocused = true
                                 }
+                                .colorScheme(.light)
                         }
                     }
                     .padding(.top, 12)
@@ -147,6 +156,7 @@ struct AddPropertyView: View {
                                 isFocused = true
                                 
                             }
+                            .colorScheme(.light)
                         
                         AddPropertyAmenities()
                             .padding(.top, 12)
@@ -173,18 +183,9 @@ struct AddPropertyView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
             }
+            .navigationBarBackButtonHidden(true)
             .background(.gray50)
-            .navigationTitle(Text("Add Property"))
-            .navigationBarTitleDisplayMode(.inline)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .toolbar{
-                ToolbarItem(placement: .topBarTrailing){
-                    Button(action: {}){
-                        Image(systemName:"ellipsis" )
-                    }
-                        .rotationEffect(.init(degrees: 90))
-                }
-            }
+            
         }
         
     }
