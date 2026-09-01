@@ -181,6 +181,8 @@ struct PaymentsView: View {
         var body: some View {
             VStack(alignment: .leading, spacing: 6) {
                 HeadingText(title, fontSize: 13, fontWeight: .regular, color: .gray600)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text(currencySymbol).foregroundStyle(.gray400)
                     Text("\(amount.formatted())")
@@ -225,6 +227,10 @@ struct PaymentsView: View {
                     .padding(.top, 16)
                     .padding(.bottom, 12)
                 
+                Divider()
+                    .padding(.bottom, 12)
+                    
+                
                 
                 HStack{
                     VStack(alignment:.leading, spacing: 8){
@@ -248,6 +254,9 @@ struct PaymentsView: View {
                 }
                 .padding(.bottom, 16)
                 
+                Divider()
+                    .padding(.bottom, 12)
+                
                 HStack{
                     VStack(alignment:.leading, spacing: 8){
                         HeadingText("Elena Rochukwu", fontSize: 15, color: .gray900)
@@ -266,6 +275,9 @@ struct PaymentsView: View {
                             )
                     }
                 }
+                
+                Divider()
+                    .padding(.bottom, 12)
             }
         }
     }
