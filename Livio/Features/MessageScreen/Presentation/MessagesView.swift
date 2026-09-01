@@ -83,7 +83,7 @@ struct MessagesView: View {
         ),
     ]
     
-    @State var filters: [String] = [
+    @State private var filters: [String] = [
         "All",
         "Unread",
         "Maintenance",

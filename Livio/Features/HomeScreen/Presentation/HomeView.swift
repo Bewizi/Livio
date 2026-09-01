@@ -155,13 +155,8 @@ struct HomeView: View {
                 }
                 
             }.padding(.horizontal, 20)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .navigationBarTitleDisplayMode(.large)
-                .toolbarColorScheme(.light)
                 .background(.gray50)
-                .safeAreaInset(edge: .bottom, spacing: 0){
-                    Color.clear.frame(height: 0)
-                }
+                .safeAreaInset(edge: .bottom, spacing: 0){}
         }
     }
 }
