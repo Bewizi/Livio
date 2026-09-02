@@ -153,10 +153,11 @@ struct HomeView: View {
                         }
                     }
                 }
+                .safeAreaInset(edge: .bottom, spacing: 0){}
                 
             }.padding(.horizontal, 20)
                 .background(.gray50)
-                .safeAreaInset(edge: .bottom, spacing: 0){}
+                
         }
     }
 }

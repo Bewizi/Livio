@@ -39,15 +39,15 @@ struct MainTabView: View {
 
             // Custom Tab Bar
             HStack(alignment: .bottom) {
-                tabButton(title: "Home", icon: selectedTab == 0 ? "house.fill" : "house", index: 0)
+                tabButton(title: "Home", icon: selectedTab == 0 ? "home-01" : "home-01", index: 0)
 
-                tabButton(title: "Properties", icon: selectedTab == 1 ? "building.2.fill" : "building.2", index: 1)
+                tabButton(title: "Properties", icon: selectedTab == 1 ? "building-01" : "building-01", index: 1)
 
-                tabButton(title: "Messages", icon:selectedTab == 2 ? "message.fill" : "message", index: 2)
+                tabButton(title: "Messages", icon:selectedTab == 2 ? "message-multiple-02" : "message-multiple-02", index: 2)
 
-                tabButton(title: "Payments", icon: selectedTab == 3 ? "creditcard.fill" : "creditcard", index: 3)
+                tabButton(title: "Payments", icon: selectedTab == 3 ? "credit-card-pos" : "credit-card-pos", index: 3)
 
-                tabButton(title: "More", icon: selectedTab == 4 ? "ellipsis.circle.fill" : "ellipsis.circle", index: 4)
+                tabButton(title: "More", icon: selectedTab == 4 ? "more-horizontal-circle-01" : "more-horizontal-circle-01", index: 4)
             }
             .padding(.top, 8)
             .padding(.bottom, 8)
@@ -68,9 +68,9 @@ struct MainTabView: View {
 
             VStack(spacing: 4) {
 
-                Image(systemName: icon)
+                Image(icon)
                     .font(.system(size: 24))
-                    .foregroundStyle(
+                    .tint(
                         selectedTab == index
                             ? Color.primaryButton
                             : Color.gray600
