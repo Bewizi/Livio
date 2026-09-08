@@ -21,6 +21,7 @@ struct RoleRow: View {
                     HeadingText(title, fontSize: 15)
                     RegularText(subtitle, fontSize: 13)
                         .lineHeight(.leading(increase: 8))
+                        .frame(width: 250, alignment: .leading)
                 }
                 .multilineTextAlignment(.leading)
 
@@ -36,11 +37,11 @@ struct RoleRow: View {
             // Full-width look with rounded shape and border
             .background(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(isSelected ? Color.gray.opacity(0.08) : Color.clear)
+                    .fill(isSelected ? Color.clear : Color.clear)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.35), lineWidth: isSelected ? 1.5 : 1)
+                    .stroke(isSelected ? .gray600 : .gray300, lineWidth: isSelected ? 1 : 1)
             )
             .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         }
