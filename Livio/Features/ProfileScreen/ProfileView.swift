@@ -118,6 +118,7 @@ struct ProfileView: View {
                 .background(.gray50)
                 .safeAreaInset(edge: .bottom){}
             }
+            .background(.gray50)
             
         }
     }
