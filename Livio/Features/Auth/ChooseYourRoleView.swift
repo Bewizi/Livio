@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-enum UserRole{
+enum UserRole: Hashable, Identifiable {
     case landLord
     case tenant
+
+    var id: Self { self }
 }
 
 struct ChooseYourRoleView: View {
     @State private var isSelected: UserRole? = nil
+    @State private var activeNavigationRole: UserRole? = nil
     
     
     var body: some View {
@@ -26,28 +29,34 @@ struct ChooseYourRoleView: View {
                     .padding(.bottom, 20)
                 
                 
-
-                
                 RoleRow(title: "I am a Landlord", subtitle: "Manage properties, track leases, and receive rent payments.", isSelected: isSelected == .landLord, action: { isSelected = .landLord })
                     .padding(.bottom, 12)
-                
                 
                 RoleRow(title: "I am a Tenant", subtitle: "Pay rent, request maintenance,and view your lease details.", isSelected: isSelected == .tenant, action: { isSelected = .tenant })
                     .padding(.bottom, 12)
                 
                 
-                
                 Spacer()
                 
                 
-                NavigationLink{
-                    MainTabView()
-                        .navigationBarBackButtonHidden()
+                Button{
+                    if let role = isSelected {
+                        activeNavigationRole = role
+                    }
                 } label: {
-                    PrimaryButton(title: "Continue", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
+                    PrimaryButton(title: "Continue", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: isSelected != nil ? .primaryButton : .gray300)
                 }
             }
-            
+            .navigationDestination(item: $activeNavigationRole) { role in
+                switch role {
+                case .landLord:
+                    MainTabView()
+                        .navigationBarBackButtonHidden()
+                case .tenant:
+                    TenantTabView()
+                        .navigationBarBackButtonHidden()
+                }
+            }
             
         }
         .padding(.horizontal, 20)
