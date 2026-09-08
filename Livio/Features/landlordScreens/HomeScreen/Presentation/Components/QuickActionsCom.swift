@@ -16,12 +16,12 @@ struct QuickActionsCom: View {
     ]
     
     let actions = [
-                ("New Tenant", "person.badge.plus"),
-                ("Maintenance", "doc.text.magnifyingglass"),
-                ("Broadcast", "megaphone"),
-                ("New Property", "house"),
-                ("Top Up Bill", "doc.text"),
-                ("Create Invoice", "doc.badge.plus")
+                ("New Tenant", "add-team"),
+                ("Maintenance", "license-maintenance"),
+                ("Broadcast", "megaphone-01"),
+                ("New Property", "home-11"),
+                ("Top Up Bill", "invoice"),
+                ("Create Invoice", "add-invoice")
     ]
     
     var body: some View {
@@ -50,11 +50,13 @@ struct QuickActionsCom: View {
     QuickActionsCom()
 }
 
-@ViewBuilder func QuickActionContainer(text: String, icon: String ) -> some View {
+@ViewBuilder func QuickActionContainer(text: String, icon: String,  ) -> some View {
     VStack(spacing: 8){
         ZStack{
             Circle().fill(.primaryButton).frame(width: 50)
-            Image(systemName: icon).foregroundStyle(.white)
+            Image(icon)
+                .renderingMode(.template)
+                .foregroundStyle(.white)
         }
         HeadingText(text, fontSize: 12)
     }
