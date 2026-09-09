@@ -26,7 +26,7 @@ struct HomeScreen: View {
                     
                     //                icon
                     NavigationLink {
-                        
+                        NotificationView()
                     }label: {
                         ZStack{
                             Circle()

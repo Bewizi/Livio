@@ -17,6 +17,7 @@ struct NotificationData: Identifiable{
     let isUnread: Bool
     let timeStamp: String
     let timeStampColor: Color
+    var iconColor: Color?
     
     
 }
@@ -30,11 +31,14 @@ struct NotificationRow: View {
             HStack(alignment: .top,){
                 HStack(alignment: .top, spacing: 12){
                     Image(notification.icon)
+                        .renderingMode(.template)
+                        .foregroundStyle(notification.iconColor ?? .black)
                         .padding(12)
                         .background(
                             Circle()
                                 .fill(.gray100)
                         )
+                        
                     VStack(alignment: .leading, spacing: 8) {
                         HeadingText(notification.title, fontSize: 15, color: notification.titleColor)
                         
