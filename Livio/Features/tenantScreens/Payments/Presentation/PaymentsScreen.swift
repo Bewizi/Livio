@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct PaymentsScreen: View {
+    
+    @State private var showAlert: Bool = false
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack(alignment:.leading){
             AppBarView(title: "Payments", isBackButton: true, defaultIcon: "notification-01",secondIcon: "settings-02", isSecondIcon: true)
@@ -46,10 +50,46 @@ struct PaymentsScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 12)
                     
-                    Button {}label: {
+                    Button {
+                        showAlert.toggle()
+                    }label: {
                         PrimaryButton(title: "Pay Rent", isBackgroundColor: true, isBorder: false, titleColor: .white, backgroundColor: .primaryButton)
                             .padding(.bottom, 12)
                     }
+                    .sheet(isPresented: $showAlert){
+                        VStack(alignment: .leading, spacing: 16){
+                            HStack{
+                                HeadingText("Pay Rent", fontSize: 19)
+                                Spacer()
+                                Button{
+                                    dismiss()
+                                } label: {
+                                    Image(systemName: "xmark")
+                                        .padding(12)
+                                        .foregroundStyle(.gray600)
+                                        .background(.gray100)
+                                        .clipShape(Circle())
+                                }
+                            }
+                            
+                            ScrollView(showsIndicators: false){
+                             
+                         PayRentSheet()
+                            
+                                
+                            }
+                            
+                            // rest of your sheet content here
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)   // <-- now correctly wraps the VStack
+                        .padding(.horizontal, 20)
+                        .padding(.top, 24)
+//                        .presentationDetents([.fraction(0.5)])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.gray50)
+                    }
+                    
+                    
                     
                     HStack{
                         HStack(spacing: 8){
@@ -258,6 +298,8 @@ struct PaymentsScreen: View {
             }
         }
     }
+    
+    
 }
 
 #Preview {
