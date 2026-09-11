@@ -22,7 +22,7 @@ struct AddPropertyView: View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading){
-                    AppBarView( title: "Add Propetery", isBackButton: true)
+                    AppBarView( title: "Add Propetery", isBackButton: true, isSecondIcon: false)
                     
                     Divider()
                         .background(.gray50)

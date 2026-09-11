@@ -16,7 +16,7 @@ struct PropertiesView: View {
             
             
             VStack {
-                AppBarView( title: "Property Directory", isBackButton: false)
+                AppBarView( title: "Property Directory", isBackButton: false, isSecondIcon: false)
                     .padding(.horizontal, 20)
                 ZStack(alignment: .bottomTrailing) {
                     ScrollView(showsIndicators: false) {

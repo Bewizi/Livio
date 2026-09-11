@@ -72,7 +72,7 @@ struct NotificationView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading){
-                AppBarView( title: "Notification", isBackButton: true)
+                AppBarView( title: "Notification", isBackButton: true, isSecondIcon: false)
                     .padding(.horizontal, 20)
                 Divider()
                     .background(.gray300)
