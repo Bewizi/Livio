@@ -11,13 +11,16 @@ struct ProfileScreen: View {
     var body: some View {
         VStack(alignment: .leading){
             
-            ZStack(alignment: .leading){
+            ZStack(alignment: .topLeading){
                 Image("property")
                     .resizable()
                     .frame(height: 350)
                     .frame(maxWidth: .infinity)
                     .clipShape(
-                        RoundedRectangle(cornerRadius: 44)
+                        UnevenRoundedRectangle(
+                            bottomLeadingRadius: 44,
+                            bottomTrailingRadius: 44
+                        )
                     )
                 
                 HStack{
@@ -30,33 +33,56 @@ struct ProfileScreen: View {
                     
                     Spacer()
                     
-                    Image("more-vertical")
-                        .padding(8)
-                        .background(
-                            Circle()
-                                .fill(.gray100)
-                                .overlay(
-                                    Circle().stroke(.white, lineWidth: 1)
-                                )
-                        )
+                    HStack(spacing: 12){
+                        Image("complaint 1")
+                            .padding(8)
+                            .background(
+                                Circle()
+                                    .fill(.gray100)
+                                    .overlay(
+                                        Circle().stroke(.white)
+                                    )
+                            )
+                        Image("more-vertical")
+                            .padding(8)
+                            .background(
+                                Circle()
+                                    .fill(.gray100)
+                                    .overlay(
+                                        Circle().stroke(.white)
+                                    )
+                            )
+                    }
+                    .padding(9)
+                    .background(
+                        RoundedRectangle(cornerRadius: 32)
+                            .fill(.white)
+                    )
+                    
                 }
-                    
-                    
+                .padding(.horizontal, 20)
+                .padding(.top, 70)
+                
+                
+                VStack {
+                     PropertyManagerCard()
+                         .padding(.horizontal, 20)
+                         .padding(.top, 260)
+                 }
             }
             
             ScrollView(showsIndicators: false){
                 VStack(alignment: .leading) {
-                    
-                    
-                    
-                    HeadingText("Unit 402, 125 Lekki Phase 1", fontSize: 19)
-                    Label("Lagos, Nigeria", image: "location-06")
-                        .foregroundStyle(.gray600)
-                        .font(.system(size: 13))
+                    VStack(alignment: .leading, spacing: 8){
+                        HeadingText("Unit 402, 125 Lekki Phase 1", fontSize: 19)
+                        Label("Lagos, Nigeria", image: "location-06")
+                            .foregroundStyle(.gray600)
+                            .font(.system(size: 13))
+                    }
+                    .padding(.bottom, 16)
                     
                     
                     HStack{
-                        
                         VStack (alignment: .leading, spacing: 10){
                             Label("Move-in-date", image: "calendar-03")
                                 .foregroundStyle(.gray600)
@@ -206,6 +232,72 @@ struct UserSettings: View {
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(.gray300)
+        )
+    }
+}
+
+struct PropertyManagerCard: View {
+    var body: some View {
+        HStack{
+
+            HStack(spacing: 10){
+                // Profile image
+                Image("user")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 42, height: 42)
+                    .clipShape(Circle())
+
+                // Text
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Property Manager")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.gray300)
+
+                    Text("Chidera Nwachukwu")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(.gray50)
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 4)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 60)
+                    .fill(.ultraThinMaterial)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 32)
+                            .fill(.black.opacity(0.45))
+                    )
+            )
+
+          
+
+            Spacer()
+
+            // Chat button
+            Image(systemName: "ellipsis.message.fill")
+                .font(.system(size: 18))
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(
+                    Circle()
+                        .fill(.clear)
+                        .overlay(
+                            Circle()
+                                .stroke(.white.opacity(0.8), lineWidth: 1)
+                        )
+                )
+        }
+        .padding(.horizontal, 9)
+        .padding(.vertical, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 60)
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 32)
+                        .fill(.black.opacity(0.65))
+                )
         )
     }
 }
